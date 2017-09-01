@@ -1,0 +1,5 @@
+.DS_Store
+volume/*
+!volume/.empty
+shared/*
+!shared/.empty
