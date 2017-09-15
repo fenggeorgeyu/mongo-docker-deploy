@@ -19,8 +19,11 @@ create:
 	-p ${pl1}:${pd1} \
 	${image}
 
-connect:
+bash:
 	docker exec -it ${name} /bin/bash
+
+connect:
+	docker exec -it ${name} mongo
 
 stop:
 	docker stop ${name}
