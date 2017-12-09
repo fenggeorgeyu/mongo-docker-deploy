@@ -5,8 +5,6 @@ vol1=${host_dir}/volume
 mnt1=/data/db
 vol2=${host_dir}/shared
 mnt2=/shared
-# passwd=ysu123
-# port local and port docker
 pl1=27017
 pd1=27017
 
@@ -19,6 +17,14 @@ create:
 	-p ${pl1}:${pd1} \
 	${image}
 
+create_auth:
+	docker run -d -it --name ${name} \
+	-v ${vol1}:${mnt1} \
+	-v ${vol2}:${mnt2} \
+	-p ${pl1}:${pd1} \
+	${image} \
+	--auth
+
 bash:
 	docker exec -it ${name} /bin/bash
 
@@ -30,6 +36,8 @@ stop:
 
 start:
 	docker start ${name}
+
+restart: stop start
 
 delete:
 	docker rm ${name}
